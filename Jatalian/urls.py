@@ -18,10 +18,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from words.views import home
+from words import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', home, name='home'),
+    path('', views.home, name='home'),
+    path('next_word/', views.next_word, name='next_word'),
 ]

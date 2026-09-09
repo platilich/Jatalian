@@ -1,21 +1,59 @@
 {% extends "base.html" %}
 
-{% block title %}Главная страница - {{ block.super }}{% endblock %}
+{% block title %}Practice — Jatalian{% endblock %}
 
 {% block content %}
-    <p>{{ request.user.get_full_name|default:request.user.email }}</p>
-    <form action="{% url 'account_logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Выйти</button>
-    </form>
-    <h1>Слова</h1>
-    {% if words %}
-        <ul>
-            {% for word in words %}
-                <li>{{ word.italian_word }} — {{ word.translate_word }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Пока нет доступных слов.</p>
-    {% endif %}
+    <div class="card main-card">
+        <!-- Навигационная панель пользователя -->
+        <div class="user-bar">
+            <span class="user-name">Hi, <strong>{{ request.user.get_full_name|default:request.user.email }}</strong></span>
+
+            <a href="#" class="nav-vocabulary">Vocabulary</a>
+
+            <form action="{% url 'account_logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">Log Out</button>
+            </form>
+        </div>
+
+        <!-- Крупная интерактивная карточка (Вариант А) -->
+        {% if words %}
+            {% with word=words.0 %}
+                <div class="flashcard-container">
+                    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                        <div class="card-face card-front">
+                            <span class="card-label">Italian</span>
+                            <h2 class="card-word">{{ word.italian_word }}</h2>
+                            <span class="card-hint">Click to flip</span>
+                        </div>
+                        <div class="card-face card-back">
+                            <span class="card-label">Translation</span>
+                            <h2 class="card-word">{{ word.translate_word }}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <a href="{% url 'next_word' %}" class="btn btn-next">Next Word →</a>
+                </div>
+            {% endwith %}
+        {% else %}
+            <div class="empty-card-state">
+                <p>No words available to practice.</p>
+            </div>
+        {% endif %}
+
+        <hr class="divider">
+
+        <!-- Форма добавления нового слова -->
+        <div class="add-word-section">
+            <h3>Add New Word</h3>
+            <form method="post" action="#" class="add-word-form">
+                {% csrf_token %}
+                <input type="text" name="italian" placeholder="Italian word" required>
+                <input type="text" name="translation" placeholder="Translation" required>
+                <button type="submit" class="btn-add">Add</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -4,26 +4,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ page_title }}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<header>
-    <nav>Главная | О нас | Контакты</nav>
+<header class="header-container">
+    <div class="dynamic-island">
+        <span class="island-flag">🇮🇹</span>
+        <a href="/" class="island-title">Jatalian</a>
+    </div>
 </header>
 
-
-<main>
+<main class="main-container">
     {% block content %}
     {% endblock %}
 </main>
 
-
-<footer>
-    <p>&copy; 2026 Моя компания</p>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <span>Plat Ilich</span>
+        </div>
+        <div class="footer-right">
+            <a href="https://github.com/platilich/Jatalian" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
 </footer>
-
 
 </body>
 </html>
