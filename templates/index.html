@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Jatalian</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Главная страница - {{ block.super }}{% endblock %}
+
+{% block content %}
     <p>{{ request.user.get_full_name|default:request.user.email }}</p>
     <form action="{% url 'account_logout' %}" method="post">
         {% csrf_token %}
@@ -20,5 +18,4 @@
     {% else %}
         <p>Пока нет доступных слов.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
