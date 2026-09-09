@@ -9,8 +9,12 @@ def home(request):
     words = Word.objects.first()
 
 
+    context = {
+        'words': [words] if words else []
+    }
 
-    return render(request, 'index.html', {'words': words})
+
+    return render(request, 'index.html', context)
 
 
 
@@ -22,4 +26,4 @@ def next_word(request):
     }
 
 
-    return render(request, 'index.html', {'words': context})
+    return render(request, 'index.html', context)
