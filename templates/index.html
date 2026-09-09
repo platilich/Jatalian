@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Jatalian</title>
+</head>
+<body>
+    <p>{{ request.user.get_full_name|default:request.user.email }}</p>
+    <form action="{% url 'account_logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Выйти</button>
+    </form>
+    <h1>Слова</h1>
+    {% if words %}
+        <ul>
+            {% for word in words %}
+                <li>{{ word.italian_word }} — {{ word.translate_word }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пока нет доступных слов.</p>
+    {% endif %}
+</body>
+</html>
