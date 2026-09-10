@@ -27,10 +27,11 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     path('delete_word/<int:word_id>', views.delete_word, name='delete_word'),
-
     path('learned_word/<int:word_id>', views.learned_word, name='learned_word'),
+    path('voice_word/<int:word_id>', views.voice_word, name='voice_word'),
 
     path("vocabulary/", views.vocabulary, name="vocabulary"),
+    path('new_word/', views.new_word, name='new_word')
 
 
 ]

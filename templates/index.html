@@ -15,6 +15,7 @@
     <div class="tabs">
         <a href="{% url 'home' %}" class="tab {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Practice</a>
         <a href="{% url 'vocabulary' %}" class="tab {% if request.resolver_match.url_name == 'vocabulary' %}active{% endif %}">Vocabulary</a>
+        <a href="{% url 'new_word' %}" class="tab {% if request.resolver_match.url_name == 'new_word' %}active{% endif %}">Add new word</a>
     </div>
 
         <!-- Flashcards Container -->
@@ -24,7 +25,7 @@
                     <!-- Front Face -->
                     <div class="card-face card-front">
                         <div class="card-actions">
-                            <form action="{% url 'delete_word' word.id %}" method="post" class="action-form">
+                            <form action="{% url 'delete_word' word.id %}" method="post" class="action-form" data-action="delete">
                                 {% csrf_token %}
                                 <button type="submit" class="btn-action btn-delete" title="Delete word" onclick="event.stopPropagation();">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,14 +34,34 @@
                                     </svg>
                                 </button>
                             </form>
-                            <form action="{% url 'learned_word' word.id %}" method="post" class="action-form">
+                            <form action="{% url 'learned_word' word.id %}" method="post" class="action-form" data-action="learned">
                                 {% csrf_token %}
-                                <button type="submit" class="btn-action btn-learned" title="Mark as learned" onclick="event.stopPropagation();">
+                                <button type="submit" class="btn-action btn-learned {% if word.is_learned %}is-learned{% endif %}" title="{% if word.is_learned %}Marked as learned{% else %}Mark as learned{% endif %}" onclick="event.stopPropagation();">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </button>
                             </form>
+
+                            <form action="{% url 'voice_word' word.id %}" method="post" class="action-form" data-action="voice">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-action btn-voice" title="To voice" onclick="event.stopPropagation();">
+                                    <svg width="16" height="16" viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="2.5"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    </svg>
+                                </button>
+                            </form>
+
+
+
+
                         </div>
                         <span class="card-label">Italiano</span>
                         <div class="card-word">{{ word.italian_word }}</div>
@@ -49,7 +70,7 @@
                     <!-- Back Face -->
                     <div class="card-face card-back">
                         <div class="card-actions">
-                            <form action="{% url 'delete_word' word.id %}" method="post" class="action-form">
+                            <form action="{% url 'delete_word' word.id %}" method="post" class="action-form" data-action="delete">
                                 {% csrf_token %}
                                 <button type="submit" class="btn-action btn-delete" title="Delete word" onclick="event.stopPropagation();">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -58,9 +79,9 @@
                                     </svg>
                                 </button>
                             </form>
-                            <form action="{% url 'learned_word' word.id %}" method="post" class="action-form">
+                            <form action="{% url 'learned_word' word.id %}" method="post" class="action-form" data-action="learned">
                                 {% csrf_token %}
-                                <button type="submit" class="btn-action btn-learned" title="Mark as learned" onclick="event.stopPropagation();">
+                                <button type="submit" class="btn-action btn-learned {% if word.is_learned %}is-learned{% endif %}" title="{% if word.is_learned %}Marked as learned{% else %}Mark as learned{% endif %}" onclick="event.stopPropagation();">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
@@ -84,17 +105,6 @@
             </div>
         {% endif %}
 
-        <hr class="divider">
-
-        <!-- Add New Word Form -->
-        <div class="add-word-section">
-            <h3>Add New Word</h3>
-            <form method="post" action="{% url 'home' %}" class="add-word-form">
-                {% csrf_token %}
-                <input type="text" name="italian" placeholder="Italian word" required>
-                <input type="text" name="translation" placeholder="Translation" required>
-                <button type="submit" class="btn-add">Add</button>
-            </form>
-        </div>
     </div>
+
 {% endblock %}

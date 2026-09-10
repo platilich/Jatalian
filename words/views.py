@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.http import JsonResponse
 from .models import Word
 
 
@@ -24,24 +24,41 @@ def home(request):
 
 
 def delete_word(request, word_id):
-    obj = get_object_or_404(Word, id=word_id, user=request.user)
-    obj.delete()
+    if request.method == 'POST':
+        obj = get_object_or_404(Word, id=word_id, user=request.user)
+        obj.delete()
+
+        return JsonResponse({'status': 'os', 'removed': 'ok'})
+
+    return JsonResponse({'status': 'error'}, status=400)
 
 
-    return redirect('home')
+
 
 
 
 def learned_word(request, word_id):
-    obj = get_object_or_404(Word, id=word_id, user=request.user)
-    obj.is_learned = not obj.is_learned
-    obj.save()
+    if request.method == 'POST':
+        obj = get_object_or_404(Word, id=word_id, user=request.user)
+        obj.is_learned = not obj.is_learned
+        obj.save()
 
-    return redirect('home')
+        return JsonResponse({'status': 'ok', 'is_learned': obj.is_learned})
 
+
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+def voice_word(request, word_id):
+    print(word_id)
 
 
 
 def vocabulary(request):
     words = Word.objects.filter(user=request.user).order_by('-id')
     return render(request, 'vocabulary.html', {'words': words})
+
+
+
+def new_word(request):
+    return render(request, 'new_word.html')

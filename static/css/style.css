@@ -58,6 +58,7 @@ body {
     max-width: 520px;
     margin: 0 auto;
     padding: 1.5rem 1rem;
+
 }
 
 .card {
@@ -283,6 +284,18 @@ body {
     background-color: #f0fdf4;
     border-color: #bbf7d0;
     color: #16a34a;
+}
+
+.btn-learned.is-learned {
+    background-color: #f0fdf4;
+}
+
+
+
+.btn-voice:hover {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #2563eb;
 }
 
 /* --- CONTROLS & ADD FORM --- */
