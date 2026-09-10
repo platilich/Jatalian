@@ -329,3 +329,11 @@ body {
     color: #0f172a;
     text-decoration: underline;
 }
+
+
+.flashcard {
+    display: none;
+}
+.flashcard.active {
+    display: block;
+}

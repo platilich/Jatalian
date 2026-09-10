@@ -6,24 +6,16 @@ from .models import Word
 
 @login_required
 def home(request):
-    words = Word.objects.first()
+    if request.method == 'POST':
+        italian = request.POST.get('italian')
+        translation = request.POST.get('translation')
 
+        if italian and translation:
+            Word.objects.create(
+                user=request.user,
+                italian_word=italian,
+                translate_word=translation
+            )
 
-    context = {
-        'words': [words] if words else []
-    }
-
-
-    return render(request, 'index.html', context)
-
-
-
-def next_word(request):
-    words = Word.objects.order_by('?').first()
-
-    context = {
-        'words': [words] if words else []
-    }
-
-
-    return render(request, 'index.html', context)
+    words = Word.objects.filter(user=request.user)
+    return render(request, 'index.html', {'words': words})

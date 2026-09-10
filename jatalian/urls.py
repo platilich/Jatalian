@@ -1,5 +1,5 @@
 """
-URL configuration for Jatalian project.
+URL configuration for jatalian project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -25,5 +25,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.home, name='home'),
-    path('next_word/', views.next_word, name='next_word'),
 ]
