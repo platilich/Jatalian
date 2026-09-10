@@ -38,3 +38,10 @@ def learned_word(request, word_id):
     obj.save()
 
     return redirect('home')
+
+
+
+
+def vocabulary(request):
+    words = Word.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'vocabulary.html', {'words': words})
