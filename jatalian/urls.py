@@ -25,4 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.home, name='home'),
+
+    path('delete_word/<int:word_id>', views.delete_word, name='delete_word'),
+
+    path('learned_word/<int:word_id>', views.learned_word, name='learned_word')
+
 ]

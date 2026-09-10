@@ -13,6 +13,9 @@ class Word(models.Model):
     translate_word = models.CharField(max_length=100, verbose_name='Translation')
 
 
+    is_learned = models.BooleanField(default=False)
+
+
     created = models.DateTimeField(auto_now_add=True, verbose_name='Date of creation')
 
 

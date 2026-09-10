@@ -1,30 +1,34 @@
-// 1. Клик по карточке — переворачиваем её
-document.querySelectorAll('.flashcard').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Клик по карточке — переворачиваем её
+    const cards = document.querySelectorAll('.flashcard');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
     });
+
+    // 2. Клик по кнопке Next Word — строго последовательное переключение
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn && cards.length > 0) {
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            // Если карточка всего одна, просто переворачиваем её обратно на переднюю сторону
+            if (cards.length === 1) {
+                cards[0].classList.remove('flipped');
+                return;
+            }
+
+            // Убираем активность и переворот с текущей карточки
+            cards[currentIndex].classList.remove('active', 'flipped');
+
+            // Переходим к следующему индексу по порядку
+            currentIndex = (currentIndex + 1) % cards.length;
+
+            // Показываем новую карточку
+            cards[currentIndex].classList.add('active');
+        });
+    }
 });
 
-// 2. Клик по кнопке — переключаем на следующую карточку
-const nextBtn = document.getElementById('next-btn');
-if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-        const cards = document.querySelectorAll('.flashcard');
-        let activeIndex = -1;
 
-        cards.forEach((card, index) => {
-            if (card.classList.contains('active')) {
-                activeIndex = index;
-            }
-        });
-
-        if (activeIndex !== -1) {
-            // Убираем показ и переворот с текущей карточки
-            cards[activeIndex].classList.remove('active', 'flipped');
-
-            // Показываем следующую по кругу
-            const nextIndex = (activeIndex + 1) % cards.length;
-            cards[nextIndex].classList.add('active');
-        }
-    });
-}

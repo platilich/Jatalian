@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Word
 
@@ -19,3 +19,22 @@ def home(request):
 
     words = Word.objects.filter(user=request.user)
     return render(request, 'index.html', {'words': words})
+
+
+
+
+def delete_word(request, word_id):
+    obj = get_object_or_404(Word, id=word_id, user=request.user)
+    obj.delete()
+
+
+    return redirect('home')
+
+
+
+def learned_word(request, word_id):
+    obj = get_object_or_404(Word, id=word_id, user=request.user)
+    obj.is_learned = not obj.is_learned
+    obj.save()
+
+    return redirect('home')
