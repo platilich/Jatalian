@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Practice — Jatalian{% endblock %}
+{% block title %}Jatalian{% endblock %}
 
 {% block content %}
     <div class="card main-card">
-        <!-- Навигационная панель пользователя -->
+        <!-- User Bar -->
         <div class="user-bar">
             <span class="user-name">Hi, <strong>{{ request.user.get_full_name|default:request.user.username }}</strong></span>
 
@@ -16,36 +16,36 @@
             </form>
         </div>
 
-        <!-- Контейнер для карточек -->
+        <!-- Flashcards Container -->
         <div class="flashcard-container">
             {% for word in words %}
                 <div class="flashcard {% if forloop.first %}active{% endif %}">
                     <div class="card-face card-front">
                         <span class="card-label">Italiano</span>
                         <div class="card-word">{{ word.italian_word }}</div>
-                        <span class="card-hint">Нажми, чтобы перевернуть</span>
+                        <span class="card-hint">Tap to flip</span>
                     </div>
                     <div class="card-face card-back">
-                        <span class="card-label">Перевод</span>
+                        <span class="card-label">Translation</span>
                         <div class="card-word">{{ word.translate_word }}</div>
                     </div>
                 </div>
             {% empty %}
                 <div class="empty-card-state">
-                    <p>Слов пока нет. Добавь первое ниже!</p>
+                    <p>No words yet. Add your first one below!</p>
                 </div>
             {% endfor %}
         </div>
 
         {% if words %}
             <div class="card-controls">
-                <button id="next-btn" class="btn-next">Следующее слово</button>
+                <button type="button" id="next-btn" class="btn-next">Next Word</button>
             </div>
         {% endif %}
 
         <hr class="divider">
 
-        <!-- Форма добавления нового слова -->
+        <!-- Add New Word Form -->
         <div class="add-word-section">
             <h3>Add New Word</h3>
             <form method="post" action="{% url 'home' %}" class="add-word-form">

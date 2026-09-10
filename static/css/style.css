@@ -69,52 +69,6 @@ body {
     width: 100%;
 }
 
-/* --- LOGIN CENTERED --- */
-.auth-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-card {
-    text-align: center;
-}
-
-.login-card h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.login-card .subtitle {
-    color: #64748b;
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-}
-
-.btn-google {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    background-color: #ffffff;
-    color: #0f172a;
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: all 0.15s ease;
-}
-
-.btn-google:hover {
-    background-color: #f1f5f9;
-    border-color: #94a3b8;
-}
-
 /* --- USER BAR & NAVIGATION --- */
 .user-bar {
     display: flex;
@@ -140,9 +94,7 @@ body {
     transition: background-color 0.15s ease;
 }
 
-.nav-vocabulary:hover {
-    background-color: #f0fdf4;
-}
+
 
 .btn-logout {
     background: none;
@@ -164,12 +116,17 @@ body {
 }
 
 .flashcard {
+    display: none;
     width: 100%;
-    height: 180px;
+    height: 190px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.4s ease;
     cursor: pointer;
+}
+
+.flashcard.active {
+    display: block;
 }
 
 .flashcard.flipped {
@@ -232,23 +189,29 @@ body {
 .card-controls {
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin: 1.25rem 0;
 }
 
 .btn-next {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background-color: #0f172a;
+    width: 30%;
+    padding: 0.8rem 1.2rem;
+    background-color: #00873E;
     color: #ffffff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
     font-weight: 600;
-    transition: background-color 0.15s ease;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .btn-next:hover {
-    background-color: #334155;
+    background-color: #007e3a;
+}
+
+.btn-next:active {
+    transform: translateY(0);
 }
 
 .divider {
@@ -265,33 +228,40 @@ body {
     color: #334155;
 }
 
+/* Фикс выпадения кнопки из контейнера */
 .add-word-form {
     display: flex;
     gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap; /* Позволяет переносу случиться при узком экране */
 }
 
 .add-word-form input {
-    flex: 1;
-    padding: 0.6rem 0.8rem;
+    flex: 1 1 140px; /* Минимальная ширина для каждого инпута */
+    min-width: 0; /* Предотвращает переполнение flex-контейнера */
+    padding: 0.65rem 0.85rem;
     border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 0.85rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .add-word-form input:focus {
     outline: none;
     border-color: #008c45;
+    box-shadow: 0 0 0 3px rgba(0, 140, 69, 0.1);
 }
 
 .btn-add {
     background-color: #008c45;
     color: white;
     border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
+    padding: 0.65rem 1.25rem;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
 .btn-add:hover {
@@ -300,8 +270,9 @@ body {
 
 .empty-card-state {
     text-align: center;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     color: #94a3b8;
+    font-size: 0.95rem;
 }
 
 /* --- FOOTER --- */
@@ -331,9 +302,57 @@ body {
 }
 
 
-.flashcard {
-    display: none;
+
+/* --- LOGIN & AUTH STYLES --- */
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
 }
-.flashcard.active {
-    display: block;
+
+.login-card {
+    width: 100%;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.login-card .subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.btn-google {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background-color: #ffffff;
+    color: #0f172a;
+    border: 1px solid #dbe2e6;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.btn-google:hover {
+    background-color: #f8fafc;
+}
+
+.btn-google:active {
+    transform: translateY(0);
 }
