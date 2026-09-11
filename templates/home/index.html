@@ -1,0 +1,31 @@
+{% extends "home_base.html" %}
+{% block title %}Study Words — Jatalian{% endblock %}
+{% block page_content %}
+    <div class="flashcard-container">
+        {% for word in words %}
+            <div class="flashcard {% if forloop.first %}active{% endif %}" data-word-id="{{ word.id }}">
+                <div class="card-face card-front">
+                    {% include "includes/card_actions.html" with word=word show_voice=True %}
+                    <span class="card-label">Italiano</span>
+                    <div class="card-word">{{ word.italian_word }}</div>
+                    <span class="card-hint">Tap to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    {% include "includes/card_actions.html" with word=word show_voice=False %}
+                    <span class="card-label">Translation</span>
+                    <div class="card-word">{{ word.translate_word }}</div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="empty-card-state">
+                <p>No words yet. Add your first one below!</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if words %}
+        <div class="card-controls">
+            <button type="button" id="next-btn" class="btn-next">Next Word</button>
+        </div>
+    {% endif %}
+{% endblock %}

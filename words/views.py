@@ -18,11 +18,11 @@ def home(request):
             )
 
     words = Word.objects.filter(user=request.user)
-    return render(request, 'index.html', {'words': words})
+    return render(request, 'home/index.html', {'words': words})
 
 
 
-
+@login_required
 def delete_word(request, word_id):
     if request.method == 'POST':
         obj = get_object_or_404(Word, id=word_id, user=request.user)
@@ -36,7 +36,7 @@ def delete_word(request, word_id):
 
 
 
-
+@login_required
 def learned_word(request, word_id):
     if request.method == 'POST':
         obj = get_object_or_404(Word, id=word_id, user=request.user)
@@ -49,16 +49,17 @@ def learned_word(request, word_id):
     return JsonResponse({'status': 'error'}, status=400)
 
 
+@login_required
 def voice_word(request, word_id):
     print(word_id)
 
 
-
+@login_required
 def vocabulary(request):
     words = Word.objects.filter(user=request.user).order_by('-id')
-    return render(request, 'vocabulary.html', {'words': words})
+    return render(request, 'home/vocabulary.html', {'words': words})
 
 
-
+@login_required
 def new_word(request):
-    return render(request, 'new_word.html')
+    return render(request, 'home/new_word.html')

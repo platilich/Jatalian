@@ -1,13 +1,10 @@
 from django.db import models
 from django.conf import settings
 
-from users.models import Category
-
 
 # Create your models here.
 class Word(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='words')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     italian_word = models.CharField(max_length=100, verbose_name='Word')
     translate_word = models.CharField(max_length=100, verbose_name='Translation')

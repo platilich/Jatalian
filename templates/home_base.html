@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card main-card">
+        <div class="user-bar">
+            <span class="user-name">Hi, <strong>{{ request.user.get_full_name|default:request.user.username }}</strong></span>
+            <form action="{% url 'account_logout' %}" method="post" style="margin: 0;">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">Log Out</button>
+            </form>
+        </div>
+
+        <div class="tabs">
+            <a href="{% url 'home' %}" class="tab {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Practice</a>
+            <a href="{% url 'vocabulary' %}" class="tab {% if request.resolver_match.url_name == 'vocabulary' %}active{% endif %}">Vocabulary</a>
+            <a href="{% url 'new_word' %}" class="tab {% if request.resolver_match.url_name == 'new_word' %}active{% endif %}">Add new word</a>
+        </div>
+
+        {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}
