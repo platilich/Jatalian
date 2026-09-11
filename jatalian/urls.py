@@ -31,7 +31,7 @@ urlpatterns = [
     path('voice_word/<int:word_id>', views.voice_word, name='voice_word'),
 
     path("vocabulary/", views.vocabulary, name="vocabulary"),
-    path('new_word/', views.new_word, name='new_word')
+    path('new_word/', views.new_word, name='new_word'),
 
 
 ]

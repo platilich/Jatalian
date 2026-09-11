@@ -63,3 +63,5 @@ def vocabulary(request):
 @login_required
 def new_word(request):
     return render(request, 'home/new_word.html')
+
+

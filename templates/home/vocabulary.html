@@ -1,42 +1,27 @@
 {% extends "home_base.html" %}
 {% block title %}My Vocabulary — Jatalian{% endblock %}
-{% block page_content %}
-    <h3 class="vocab-title">My Vocabulary</h3>
 
+
+{% block page_content %}
     {% if words %}
         <div class="vocab-table-wrapper">
             <div class="vocab-header">
                 <div>Italian</div>
                 <div>Translation</div>
                 <div>Status</div>
-                <div>Actions</div>
+                <div></div>
             </div>
 
             {% for word in words %}
                 <div class="vocab-row">
                     <div class="vocab-word">{{ word.italian_word }}</div>
                     <div class="vocab-translation">{{ word.translate_word }}</div>
+
                     <div class="vocab-status">
                         {% if word.is_learned %}
-                            <form action="{% url 'delete_word' word.id %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="btn-delete-word" title="Delete word">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                            <span class="badge badge-learned">Learned</span>
                         {% else %}
-                            <form action="{% url 'delete_word' word.id %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="btn-delete-word" title="Delete word">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                            <span class="badge badge-not-learned">Learning</span>
                         {% endif %}
                     </div>
 
@@ -51,10 +36,7 @@
                             </button>
                         </form>
                     </div>
-
                 </div>
-
-
             {% endfor %}
         </div>
 

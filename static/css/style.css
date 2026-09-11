@@ -562,3 +562,98 @@ body {
         font-size: 0.7rem;
     }
 }
+
+
+/* ===== Улучшения Vocabulary (добавлено) ===== */
+
+.vocab-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.vocab-header {
+    grid-template-columns: 1.5fr 1.5fr 1.1fr 44px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.35rem;
+    text-align: center;
+}
+
+.vocab-row {
+    grid-template-columns: 1.5fr 1.5fr 1.1fr 44px;
+    padding: 1rem;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 0.35rem;
+    transition: all 0.18s ease;
+}
+
+
+
+.vocab-word {
+    font-weight: 650;
+    font-size: 1rem;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+.vocab-translation {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.7rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.badge-learned {
+    background-color: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+.badge-not-learned {
+    background-color: #f8fafc;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-delete-word {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    opacity: 0.7;
+}
+
+.vocab-row:hover .btn-delete-word {
+    opacity: 1;
+}
+
+/* Адаптив */
+@media (max-width: 480px) {
+    .vocab-header,
+    .vocab-row {
+        grid-template-columns: 1.3fr 1.3fr 1fr 38px;
+        gap: 0.5rem;
+        padding: 0.85rem 0.7rem;
+    }
+
+    .vocab-word {
+        font-size: 0.95rem;
+    }
+
+    .badge {
+        font-size: 0.68rem;
+        padding: 0.22rem 0.55rem;
+    }
+}
+
