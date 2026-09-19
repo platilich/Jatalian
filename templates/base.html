@@ -1,43 +1,60 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ page_title }}{% endblock %}</title>
+    <meta name="theme-color" content="#4285f4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+    <title>{% block title %}Jatalian{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block custom_style %}{% endblock %}
 </head>
+
 <body>
 
-<header class="header-container">
-    <div class="dynamic-island">
-        <span class="island-flag">🇮🇹</span>
-        <a href="/static" class="island-title">Jatalian</a>
-    </div>
-</header>
-
-<main class="main-container">
-    {% block content %}
-    {% endblock %}
-</main>
-
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-left">
-            <span>Plat Ilich</span>
+    <header class="header-wrapper">
+        <div class="logo">
+            <div class="italy-flag">
+                <div class="stripe green"></div>
+                <div class="stripe white"></div>
+                <div class="stripe red"></div>
+            </div>
+            <h1 class="logo-text">Jatalian</h1>
         </div>
-        <div class="footer-right">
-            <a href="https://github.com/platilich/Jatalian" target="_blank" rel="noopener">GitHub</a>
-        </div>
+
+        {% if user.is_authenticated %}
+        <nav class="nav-links">
+            <a href="{% url 'home' %}">Practice</a>
+            <a href="{% url 'vocabulary' %}">Vocabulary</a>
+            <a href="{% url 'new_word' %}">Add</a>
+        </nav>
+        {% endif %}
+    </header>
+
+
+    {% if user.is_authenticated %}
+    <div class="user-pill">
+        <span class="user-greeting">👋 Hi, <strong>{{ user.get_full_name|default:user.username }}</strong></span>
+        <form action="{% url 'account_logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">Log Out</button>
+        </form>
     </div>
-</footer>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
 
-<script src="{% static 'js/script.js' %}"></script>
+    <footer>
+        <p>Plat Ilich</p>
+        <a href="https://github.com/platilich/Jatalian" target="_blank" rel="noopener">GitHub</a>
+    </footer>
 
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

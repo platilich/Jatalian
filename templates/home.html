@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Practice — Jatalian{% endblock %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'css/practice.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    {% for word in words %}
+        <article class="flashcard{% if forloop.first %} active{% endif %}" data-word-id="{{ word.id }}"{% if not forloop.first %} hidden{% endif %}>
+            <div class="card-actions">
+                <form action="{% url 'learned_word' word.id %}" method="post" class="action-form" data-action="learned">
+                    {% csrf_token %}
+                    <button type="submit"
+                            class="btn-learned{% if word.is_learned %} is-learned{% endif %}"
+                            title="{% if word.is_learned %}Marked as learned{% else %}Mark as learned{% endif %}"
+                            onclick="event.stopPropagation();">
+                        Learned
+                    </button>
+                </form>
+
+                <form action="{% url 'voice_word' word.id %}" method="post" class="action-form" data-action="voice">
+                    {% csrf_token %}
+                    <button type="submit" onclick="event.stopPropagation();">Voice</button>
+                </form>
+
+                <form action="{% url 'delete_word' word.id %}" method="post" class="action-form" data-action="delete">
+                    {% csrf_token %}
+                    <button type="submit" onclick="event.stopPropagation();">Delete</button>
+                </form>
+
+            </div>
+
+            <div class="card-front">
+                <p>Italiano</p>
+                <h2>{{ word.italian_word }}</h2>
+                <p>Tap to flip</p>
+            </div>
+
+            <div class="card-back">
+                <p>Translation</p>
+                <h2>{{ word.translate_word }}</h2>
+            </div>
+        </article>
+    {% empty %}
+        <p>No words yet. Add your first one on the «Add new word» page.</p>
+    {% endfor %}
+
+    {% if words %}
+        <div class="card-controls">
+            <button type="button" id="next-btn">Next Word</button>
+        </div>
+    {% endif %}
+{% endblock %}

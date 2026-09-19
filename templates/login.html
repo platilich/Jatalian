@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sign in — Jatalian{% endblock %}
+
+
+{% block custom_style %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="auth-box">
+        <h1>Jatalian</h1>
+        <p>Learn Italian easily. Simple & Open Source.</p>
+        <a id="btn_google" href="{% url 'google_login' %}">Sign in with Google</a>
+    </div>
+{% endblock %}

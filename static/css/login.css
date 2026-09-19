@@ -1,0 +1,27 @@
+.auth-box {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+#btn_google {
+    background-color: var(--ac);
+    padding: 5%;
+    border-radius: 16px;
+    border: 2px solid var(--ac);
+    color: white;
+    text-decoration: none;
+
+
+    transition: 0.5s;
+
+}
+
+#btn_google:hover {
+    background-color: white;
+    color: black;
+
+}

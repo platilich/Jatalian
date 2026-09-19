@@ -1,0 +1,138 @@
+.flashcard { /* карточка */
+    background-color: white;
+
+    /* ИСПРАВЛЕНИЕ: Теперь карточка занимает 100% от ширины контента внутри main */
+    width: 100%;
+    height: 260px; /* Немного увеличил высоту, чтобы кнопкам сверху и длинным словам было свободно */
+
+    border-radius: 20px;
+    border: 2px solid var(--ac);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.02);
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Скрываем неактивные карточки */
+.flashcard[hidden] {
+    display: none !important;
+}
+
+/* --- ВЕРХНЯЯ ПАНЕЛЬ ДЕЙСТВИЙ --- */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 8px;
+    width: 100%;
+}
+
+.card-actions button {
+    background-color: var(--fistahka);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-actions button:hover {
+    background-color: var(--ac);
+    color: white;
+}
+
+.card-actions form[data-action="delete"] button:hover {
+    background-color: #ffb3b3;
+    color: #cc0000;
+}
+
+.card-actions .btn-learned.is-learned {
+    background-color: var(--fs);
+    color: white;
+}
+
+/* --- СЕРЕДИНА КАРТОЧКИ --- */
+.card-front, .card-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.card-front p, .card-back p {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.card-front h2, .card-back h2 {
+    font-size: 2.2rem;
+    color: black;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.card-front p:last-child {
+    font-size: 0.75rem;
+    color: #bbb;
+    margin-top: 10px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+
+.card-back {
+    display: none;
+}
+
+.flashcard.flipped .card-front {
+    display: none;
+}
+
+.flashcard.flipped .card-back {
+    display: flex;
+}
+
+
+.card-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+#next-btn {
+    width: 100%;
+
+    background-color: var(--ac);
+    border: 2px solid var(--ac);
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(135, 169, 135, 0.15);
+    transition: transform 0.1s ease, background-color 0.2s, color 0.2s;
+}
+
+#next-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+#next-btn:active {
+    transform: scale(0.98);
+}

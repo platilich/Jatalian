@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}My Vocabulary — Jatalian{% endblock %}
+
+{% block custom_style %}
+    <link rel="stylesheet" href="../static/css/vocabulary.css">
+{% endblock %}
+
+{% block content %}
+    <h1>My Vocabulary</h1>
+
+    {% if words %}
+        <div class="table-wrapper">
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Italian</th>
+                        <th>Translation</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for word in words %}
+                        <tr>
+                            <td class="word-italian">{{ word.italian_word }}</td>
+                            <td>{{ word.translate_word }}</td>
+                            <td>
+                                {% if word.is_learned %}
+                                    <span class="badge badge-success">Learned</span>
+                                {% else %}
+                                    <span class="badge">Learning</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form action="{% url 'delete_word' word.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-link btn-link-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>No words in your vocabulary yet.</p>
+            <a href="{% url 'new_word' %}" class="btn">Add New Word</a>
+        </div>
+    {% endif %}
+{% endblock %}

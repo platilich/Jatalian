@@ -1,659 +1,220 @@
+:root {
+    --bg: #E8F0E6;
+    --ac: #87A987;
+
+    --fistahka: #F0F4EC;
+    --fs: #52B788;
+}
+
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #f8fafc;
-    color: #0f172a;
     display: flex;
     flex-direction: column;
+    background-color: var(--bg);
+
+    font-family: "Comfortaa", sans-serif;
+
     min-height: 100vh;
-}
 
-/* --- DYNAMIC ISLAND HEADER --- */
-.header-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 1.25rem;
-}
 
-.dynamic-island {
-    background-color: #1e293b;
-    color: #ffffff;
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-}
 
-.dynamic-island:hover {
-    transform: scale(1.03);
-}
 
-.island-flag {
-    font-size: 1.1rem;
-}
 
-.island-title {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
 
-/* --- MAIN CONTAINER & CARDS --- */
-.main-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem;
+
 
 }
 
-.card {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-    width: 100%;
-}
 
-/* --- LOGIN PAGE STYLES --- */
-.auth-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 0;
-}
-
-.login-card {
-    width: 100%;
-    text-align: center;
-}
-
-.login-card h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.025em;
-}
-
-.login-card .subtitle {
-    color: #64748b;
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-}
-
-.btn-google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    background-color: #0f172a;
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-}
-
-.btn-google:hover {
-    background-color: #1e293b;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
-    color: #ffffff;
-}
-
-.btn-google:active {
-    transform: translateY(0);
-}
-
-/* --- USER BAR & NAVIGATION --- */
-.user-bar {
+header {
     display: flex;
     justify-content: space-between;
+
     align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #f1f5f9;
+    background-color: var(--ac);
+    padding: 1%;
+
+
+    width: 100%;
 }
 
-.user-name {
-    font-size: 0.85rem;
-    color: #475569;
+
+
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+
 }
 
-.nav-vocabulary {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #008c45;
+
+.nav-links a {
+    display: block;
+    color: black;
+    padding: 12px;
+
+    border-radius: 8px;
+
     text-decoration: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 6px;
-    transition: background-color 0.15s ease;
+
+    background-color: var(--fistahka);
+    border: 2px solid var(--fistahka);
+
 }
 
-.nav-vocabulary:hover {
-    background-color: #f0fdf4;
+
+
+.user-pill {
+    display: flex;
+    justify-content: space-between; /* Элементы внутри (например, аватарка и имя) разъедутся по краям */
+    align-items: center;            /* Выравнивание иконки и текста по вертикали */
+
+    background-color: white;
+    border: 2px solid var(--ac);
+    border-radius: 16px;
+
+    /* Гибкая ширина: панелька будет максимум 280px, но на мелких экранах не вылезет за пределы */
+    width: 280px;
+
+    /* Внешний отступ сверху и автоматический по бокам, чтобы плашка встала по центру под меню */
+    margin: 15px auto 0 auto;
+
+    /* Фиксированные аккуратные отступы внутри (10px сверху/снизу, 15px слева/справа) */
+    padding: 10px 15px;
+
+    /* Чтобы padding не раздувал общую ширину */
+    box-sizing: border-box;
 }
+
+
+
 
 .btn-logout {
-    background: none;
-    border: none;
-    color: #cd212a;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
+    background-color: white;
+    border: 2px solid var(--ac);
+
+    border-radius: 9px;
+
+    width: 75px;
+    height: 30px;
+
+    transition: 0.5s;
+
+
+
+    &:hover {
+        background-color: var(--ac);
+        color: white;
+    }
+
 }
 
-.btn-logout:hover {
-    text-decoration: underline;
-}
 
-/* --- FLASHCARD (FLIP ANIMATION) --- */
-.flashcard-container {
-    perspective: 1000px;
-    margin: 1rem 0;
-}
 
-.flashcard {
-    display: none;
-    width: 100%;
-    height: 190px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.4s ease;
-    cursor: pointer;
-}
-
-.flashcard.active {
-    display: block;
-}
-
-.flashcard.flipped {
-    transform: rotateY(180deg);
-}
-
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 16px;
+main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border: 1px solid #e2e8f0;
-    padding: 1.5rem;
-}
+    background-color: white;
 
-.card-front {
-    background-color: #f8fafc;
-}
+    /* ИСПРАВЛЕНИЕ: На десктопе ширина будет аккуратные 500px,
+       а на мобильных он послушно сожмется до 90% и не вылетит */
+    width: 90%;
+    max-width: 500px;
 
-.card-back {
-    background-color: #f0fdf4;
-    border-color: #bbf7d0;
-    transform: rotateY(180deg);
-}
-
-.card-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #94a3b8;
-    margin-bottom: 0.5rem;
-}
-
-.card-back .card-label {
-    color: #166534;
-}
-
-.card-word {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #0f172a;
-}
-
-.card-back .card-word {
-    color: #008c45;
-}
-
-.card-hint {
-    font-size: 0.75rem;
-    color: #cbd5e1;
-    margin-top: 0.75rem;
-}
-
-/* --- CARD ACTION BUTTONS (TOP LEFT) --- */
-.card-actions {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    display: flex;
-    gap: 6px;
-    z-index: 10;
-}
-
-.action-form {
-    margin: 0;
-}
-
-.btn-action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background-color: #ffffff;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    color: #64748b;
-}
-
-.btn-delete:hover {
-    background-color: #fef2f2;
-    border-color: #fecaca;
-    color: #dc2626;
-}
-
-.btn-learned:hover {
-    background-color: #f0fdf4;
-    border-color: #bbf7d0;
-    color: #16a34a;
-}
-
-.btn-learned.is-learned {
-    background-color: #f0fdf4;
+    margin: auto auto;
+    padding: 30px; /* Пиксели надежнее процентов для внутренних отступов */
+    gap: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Легкая аккуратная тень для самого main */
 }
 
 
-
-.btn-voice:hover {
-    background-color: #eff6ff;
-    border-color: #bfdbfe;
-    color: #2563eb;
-}
-
-/* --- CONTROLS & ADD FORM --- */
-.card-controls {
-    display: flex;
-    justify-content: center;
-    margin: 1.25rem 0;
-}
-
-.btn-next {
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    background-color: #0f172a;
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-}
-
-.btn-next:hover {
-    background-color: #1e293b;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
-}
-
-.btn-next:active {
-    transform: translateY(0);
-}
-
-.divider {
-    border: 0;
-    height: 1px;
-    background-color: #f1f5f9;
-    margin: 1.5rem 0;
-}
-
-.add-word-section h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #334155;
-}
-
-.add-word-form {
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.add-word-form input {
-    flex: 1 1 140px;
-    min-width: 0;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.add-word-form input:focus {
-    outline: none;
-    border-color: #008c45;
-    box-shadow: 0 0 0 3px rgba(0, 140, 69, 0.1);
-}
-
-.btn-add {
-    background-color: #008c45;
-    color: white;
-    border: none;
-    padding: 0.65rem 1.25rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: background-color 0.15s ease, transform 0.15s ease;
-}
-
-.btn-add:hover {
-    background-color: #007338;
-}
-
-.empty-card-state {
-    text-align: center;
-    padding: 2.5rem 0;
-    color: #94a3b8;
-    font-size: 0.95rem;
-}
-
-/* --- FOOTER --- */
-.footer {
-    padding: 1.5rem 1rem;
-    font-size: 0.85rem;
-    color: #64748b;
-}
-
-.footer-content {
-    max-width: 520px;
-    margin: 0 auto;
+footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.footer-right a {
-    color: #64748b;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.footer-right a:hover {
-    color: #0f172a;
-    text-decoration: underline;
-}
 
 
+    background-color: var(--ac);
+
+    padding: 2%;
 
 
-/* --- TABS --- */
-.tabs {
-    display: flex;
-    justify-content: center;       /* центрируем */
-    gap: 0.5rem;
-    margin-bottom: 1.75rem;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 0.85rem;
-}
-
-.tab {
-    padding: 0.5rem 1.4rem;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #64748b;
-    text-decoration: none;
-    transition: all 0.15s ease;
-}
-
-.tab:hover {
-    background-color: #f1f5f9;
-    color: #0f172a;
-}
-
-.tab.active {
-    background-color: #f0fdf4;
-    color: #008c45;
-    font-weight: 600;
-}
-
-
-
-/* --- VOCABULARY LIST PAGE --- */
-.vocab-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 1rem;
-}
-
-.vocab-table-wrapper {
     width: 100%;
-}
 
-.vocab-header {
-    display: grid;
-    grid-template-columns: 1.4fr 1.4fr 1fr 40px;
-    gap: 0.75rem;
-    padding: 0.6rem 0.75rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #94a3b8;
-    border-bottom: 1px solid #e2e8f0;
-}
 
-.vocab-row {
-    display: grid;
-    grid-template-columns: 1.4fr 1.4fr 1fr 40px;
-    gap: 0.75rem;
-    align-items: center;
-    padding: 0.85rem 0.75rem;
-    border-bottom: 1px solid #f1f5f9;
-    transition: background-color 0.15s ease;
-}
-
-.vocab-row:hover {
-    background-color: #f8fafc;
-}
-
-.vocab-word {
-    font-weight: 600;
-    color: #0f172a;
-    font-size: 0.95rem;
-}
-
-.vocab-translation {
-    color: #475569;
-    font-size: 0.95rem;
-}
-
-.vocab-status {
-    display: flex;
-    align-items: center;
-}
-
-.badge {
-    display: inline-block;
-    padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
-
-.badge-learned {
-    background-color: #f0fdf4;
-    color: #166534;
-}
-
-.badge-not-learned {
-    background-color: #f1f5f9;
-    color: #64748b;
-}
-
-.vocab-actions {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.btn-delete-word {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background-color: #ffffff;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.btn-delete-word:hover {
-    background-color: #fef2f2;
-    border-color: #fecaca;
-    color: #dc2626;
-}
-
-/* Small screens */
-@media (max-width: 480px) {
-    .vocab-header,
-    .vocab-row {
-        grid-template-columns: 1.2fr 1.2fr 0.9fr 36px;
-        gap: 0.4rem;
-        font-size: 0.85rem;
-    }
-
-    .vocab-header {
-        font-size: 0.7rem;
+    a {
+        color: black;
     }
 }
 
 
-/* ===== Улучшения Vocabulary (добавлено) ===== */
 
-.vocab-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
-}
-
-.vocab-header {
-    grid-template-columns: 1.5fr 1.5fr 1.1fr 44px;
-    padding: 0.7rem 1rem;
-    margin-bottom: 0.35rem;
-    text-align: center;
-}
-
-.vocab-row {
-    grid-template-columns: 1.5fr 1.5fr 1.1fr 44px;
-    padding: 1rem;
-    border-radius: 14px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 0.35rem;
-    transition: all 0.18s ease;
-}
-
-
-
-.vocab-word {
-    font-weight: 650;
-    font-size: 1rem;
-    color: #0f172a;
-    letter-spacing: -0.01em;
-}
-
-.vocab-translation {
-    color: #64748b;
-    font-size: 0.95rem;
-}
-
-.badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.28rem 0.7rem;
-    border-radius: 9999px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-.badge-learned {
-    background-color: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-}
-
-.badge-not-learned {
-    background-color: #f8fafc;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
-}
-
-.btn-delete-word {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    opacity: 0.7;
-}
-
-.vocab-row:hover .btn-delete-word {
-    opacity: 1;
-}
-
-/* Адаптив */
-@media (max-width: 480px) {
-    .vocab-header,
-    .vocab-row {
-        grid-template-columns: 1.3fr 1.3fr 1fr 38px;
-        gap: 0.5rem;
-        padding: 0.85rem 0.7rem;
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
     }
 
-    .vocab-word {
-        font-size: 0.95rem;
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
     }
 
-    .badge {
-        font-size: 0.68rem;
-        padding: 0.22rem 0.55rem;
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        background-color: var(--fistahka);
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.5s;
+        border: 2px solid var(--fistahka);
     }
+
+    .nav-links a:active {
+        background-color: var(--ac);
+        border: 2px solid white;
+        color: white;
+    }
+
+
+    .user-pill {
+        width: 80%;
+        height: 10%;
+    }
+
+    .btn-logout {
+        width: 110px;
+        height: 50px;
+
+    }
+
+
+    main {
+        width: 95%;
+
+        margin: 40px auto;
+    }
+
+
+
+    footer {
+        padding: 5%;
+    }
+
+
 }
-

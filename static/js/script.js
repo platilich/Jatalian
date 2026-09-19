@@ -7,22 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const cards = getCards();
         if (!cards.length) return;
 
-        // Нормализуем индекс (поддержка отрицательных и переполнения)
         index = ((index % cards.length) + cards.length) % cards.length;
 
         cards.forEach((card, i) => {
             const isActive = i === index;
             card.classList.toggle('active', isActive);
+            card.hidden = !isActive;
             if (!isActive) card.classList.remove('flipped');
         });
     };
 
-    // Переворот карточки по клику
     getCards().forEach(card => {
         card.addEventListener('click', () => card.classList.toggle('flipped'));
     });
 
-    // Кнопка "следующая"
     nextBtn?.addEventListener('click', () => {
         const cards = getCards();
         if (!cards.length) return;
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showCard(current + 1);
     });
 
-    // Формы действий (удалить / выучено)
     document.querySelectorAll('.action-form').forEach(form => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -47,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
             });
 
             if (!response.ok) return;
